@@ -1,0 +1,28 @@
+/* forms */
+$state-danger-text: #a94442;
+
+input, textarea, select, .uneditable-input{
+  border: 1px solid #bbb;
+  width: 100%;
+  margin-bottom: 15px;
+  @include box-sizing;
+}
+
+input{
+  height: auto !important;
+}
+
+#error_explanation{
+  color: red;
+  ul{
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors{
+  .form-control{
+    color: $state-danger-text;
+    border-color: $state-danger-text;
+  }
+}
