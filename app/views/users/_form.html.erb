@@ -1,0 +1,20 @@
+<%= form_for(@user) do |f| %>
+  <%# エラーメッセージパーシャル %>
+  <%= render 'shared/error_messages' %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class:'form-control' %>
+
+  <%= f.label :email %>
+  <%= f.text_field :email, class:'form-control' %>
+
+  <%= f.label :password %>
+  <%= f.password_field :password, class:'form-control' %>
+
+  <%= f.label :password_confirmation, 'Confirmation' %>
+  <%= f.password_field :password_confirmation, class:'form-control' %>
+  <%# '<%'はコードを実行するのみ、'<%='はコードを実行し、結果を出力する。　 %>
+  <%# html.erbでのコメントの書き方に注意 %>
+
+  <%= f.submit yield(:button_text), class:'btn btn-primary'%>
+<% end %>
