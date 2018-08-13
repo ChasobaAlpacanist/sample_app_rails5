@@ -1,7 +1,8 @@
 class User < ApplicationRecord
+  has_many :microposts, dependent: :destroy
   attr_accessor :remember_token, :activation_token, :reset_token
   before_save :downcase_email #DBにセーブする前に行う
-  before_create :create_activation_digest #DBにデータを作り前に行う
+  before_create :create_activation_digest #DBにデータを作る前に行う
   validates :name, presence:true, length:{ maximum:50 }
 
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(?:\.[a-z\d\-]+)*\.[a-z]+\z/i
@@ -63,6 +64,11 @@ class User < ApplicationRecord
 
   def password_reset_expired?
     reset_sent_at < 2.hours.ago
+  end
+
+  #feed マイクロポストの概要をリスト化したもの
+  def feed
+    Micropost.where('user_id = ?', id)
   end
 
     private
